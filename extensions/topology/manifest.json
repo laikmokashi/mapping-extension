@@ -1,0 +1,58 @@
+{
+  "manifestVersion": "1.0",
+  "id": "duplo.examples.topology",
+  "name": "Topology",
+  "version": "0.1.0",
+
+  "sdkVersion": "REPLACED_BY_SKILL_FROM_sdk-version_ENDPOINT",
+  "backend": {
+    "assemblyDir": "duplo.examples.topology/0.1.0/backend",
+    "entryAssembly": "Duplo.Extension.Topology.dll"
+  },
+
+  "resources": [
+    {
+      "ticketOriginType": "TopologyMap",
+      "restSegment": "extensions/topology-maps",
+      "subType": "topology-map",
+      "archetype": "typed",
+      "registrar": "DevOpsResource",
+      "entityType": "Duplo.Extension.Topology.TopologyMap",
+      "specType": "Duplo.Extension.Topology.TopologyMapSpec",
+      "resultType": "Duplo.Extension.Topology.TopologyMapResult",
+      "hooksType": "Duplo.Extension.Topology.TopologyMapHooks",
+      "serviceType": "Duplo.Extension.Topology.TopologyMapService"
+    }
+  ],
+
+  "frontend": {
+    "remote": {
+      "remoteName": "duploExtensionTopology",
+      "remoteEntry": "/v1/aiservicedesk/extensions/duplo.examples.topology/fe/remoteEntry.json",
+      "exposedModule": "./Extension",
+      "type": "module"
+    },
+    "menus": [
+      {
+        "id": "duplo.examples.topology-topology",
+        "title": "Topology",
+        "type": "collapsible-section",
+        "matIcon": "graph-outline",
+        "order": 55,
+        "children": [
+          {
+            "id": "duplo.examples.topology-topology-maps",
+            "title": "Maps",
+            "type": "item",
+            "matIcon": "sitemap",
+            "relativeUrl": "extensions/topology-maps",
+            "order": 1
+          }
+        ]
+      }
+    ],
+    "routes": [
+      { "path": "extensions/topology-maps", "resourceType": "TopologyMap", "subType": "topology-map" }
+    ]
+  }
+}
